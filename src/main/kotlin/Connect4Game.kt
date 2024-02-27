@@ -11,11 +11,13 @@ import kotlin.random.Random
  * @property currentPlayer identifies which player is currently playing (1 for the human player, 2 for the computer player)
  * @property board 5x7 array storing the state of the game board
  */
-class Connect4Game(private val HUMAN_PLAYER: Int = 1,
-                   private val COMPUTER_PLAYER: Int = 2,
-                   private var currentPlayer: Int = 1,
-                   private var hasWinner: Boolean = false,
-                   private var board: Array<Array<Int>> = Array(6) { Array<Int>(7) { 0 } }) {
+class Connect4Game(
+    private val HUMAN_PLAYER: Int = 1,
+    private val COMPUTER_PLAYER: Int = 2,
+    private var currentPlayer: Int = 1,
+    private var hasWinner: Boolean = false,
+    private var board: Array<Array<Int>> = Array(6) { Array<Int>(7) { 0 } }
+) {
 
     /**
      * Returns the index of the topmost row in the specified column which contains a played piece.
@@ -38,7 +40,7 @@ class Connect4Game(private val HUMAN_PLAYER: Int = 1,
         var validCol = false
         var chosenCol: Int = -1
         while (!validCol) {
-            chosenCol = Random.nextInt(0,6)
+            chosenCol = Random.nextInt(0, 6)
             if (placePiece(chosenCol)) {
                 validCol = true
             }
@@ -61,7 +63,7 @@ class Connect4Game(private val HUMAN_PLAYER: Int = 1,
             println("Invalid column number input to playPiece")
             return false
         }
-        if  (board[0][col] != 0) {
+        if (board[0][col] != 0) {
             println("That column is already full. Try again.")
             return false
         }
@@ -205,7 +207,7 @@ class Connect4Game(private val HUMAN_PLAYER: Int = 1,
                         currentPlayer == board[i + 1][j + 1] &&
                         currentPlayer == board[i + 2][j + 2] &&
                         currentPlayer == board[i + 3][j + 3]
-                        ) {
+                    ) {
                         println("downright win")
                         return true
                     }

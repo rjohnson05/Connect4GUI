@@ -11,7 +11,7 @@ import javax.swing.*
  *
  * @author Ryan Johnson
  */
-class MainFrame: JFrame() {
+class MainFrame : JFrame() {
     private val WINDOW_WIDTH = 1000
     private val WINDOW_HEIGHT = 700
 
@@ -21,7 +21,8 @@ class MainFrame: JFrame() {
     val welcomeLabel = JLabel("Welcome to Connect 4!")
     val instructionLabel = JLabel("Click a column to place a piece.")
     val humanWinnerLabel = JLabel("<html>Congratulations! You've won!<br>Press Enter to play again.</html>")
-    val computerWinnerLabel = JLabel("<html>Sorry, but the computer's beat you...<br>Press Enter to play again...</html>")
+    val computerWinnerLabel =
+        JLabel("<html>Sorry, but the computer's beat you...<br>Press Enter to play again...</html>")
     val warningLabel = JLabel("That column is full. Choose a different column.")
 
     /**
@@ -29,7 +30,7 @@ class MainFrame: JFrame() {
      */
     init {
         setTitle("Connect 4 GUI")
-        setSize(WINDOW_WIDTH,WINDOW_HEIGHT)
+        setSize(WINDOW_WIDTH, WINDOW_HEIGHT)
         setDefaultCloseOperation(EXIT_ON_CLOSE)
         setLayout(null)
         createElements()
@@ -65,12 +66,12 @@ class MainFrame: JFrame() {
         val resizedBoard = board.getScaledInstance(600, 500, Image.SCALE_DEFAULT)
         val boardLabel = JLabel(ImageIcon(resizedBoard))
         add(boardLabel)
-        boardLabel.setBounds(190,150, 600, 500)
+        boardLabel.setBounds(190, 150, 600, 500)
 
         for (i in 0..6) {
             val button = JButton()
             boardButtonsList.add(button)
-            button.setBounds(83*i + 200,150, 83, 500)
+            button.setBounds(83 * i + 200, 150, 83, 500)
             add(button)
 
             button.addMouseListener(object : MouseAdapter() {
@@ -133,7 +134,7 @@ class MainFrame: JFrame() {
         val resizedRedPiece = redPieceImage.getScaledInstance(58, 56, Image.SCALE_DEFAULT)
         val redPieceLabel = JLabel(ImageIcon(resizedRedPiece))
         add(redPieceLabel)
-        redPieceLabel.setBounds(82*(humanCoords.second) + 201,79*(humanCoords.first) + 160, 86, 86)
+        redPieceLabel.setBounds(82 * (humanCoords.second) + 201, 79 * (humanCoords.first) + 160, 86, 86)
 
         if (game.hasWon(humanCoords.first, humanCoords.second)) {
             endGame()
@@ -151,7 +152,7 @@ class MainFrame: JFrame() {
         val resizedYellowPiece = yellowPieceImage.getScaledInstance(58, 56, Image.SCALE_DEFAULT)
         val yellowPieceLabel = JLabel(ImageIcon(resizedYellowPiece))
         add(yellowPieceLabel)
-        yellowPieceLabel.setBounds(82*(computerCoords.second) + 201,79*(computerCoords.first) + 160, 86, 86)
+        yellowPieceLabel.setBounds(82 * (computerCoords.second) + 201, 79 * (computerCoords.first) + 160, 86, 86)
 
         if (game.hasWon(computerCoords.first, computerCoords.second)) {
             endGame()
@@ -176,7 +177,8 @@ class MainFrame: JFrame() {
             cursor = Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR)
             remove(button)
         }
-        getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "reset");
+        getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
+            .put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "reset");
         getRootPane().actionMap.put("reset", object : AbstractAction() {
             override fun actionPerformed(e: ActionEvent) {
                 resetGame()
